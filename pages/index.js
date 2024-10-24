@@ -12,6 +12,20 @@ export default function Home() {
             <UserImage src="/me.jpg" />
           </Profile>
         </Header>
+        <ActionButtons>
+          <ActionButton>
+            <ActionButtonImage src="images/uberx.png" />
+            Ride
+          </ActionButton>
+          <ActionButton>
+            <ActionButtonImage src="images/bike.png" />
+            Wheels
+          </ActionButton>
+          <ActionButton>
+            <ActionButtonImage src="images/uberschedule.png" />
+            Reserve
+          </ActionButton>
+        </ActionButtons>
       </ActionItems>
     </Wrapper>
   );
@@ -43,4 +57,16 @@ mr-4 w-20 text-sm text-black
 
 const UserImage = tw.img`
 h-12 w-12 rounded-full border border-gray-200
+`;
+
+const ActionButtons = tw.div`
+flex 
+`;
+
+const ActionButton = tw.div`
+flex bg-gray-200 text-black flex-1 m-1 h-32 items-center flex-col justify-center rounded-lg transform hover:scale-105 transition text-xl
+`;
+
+const ActionButtonImage = tw.img`
+h-3/5
 `;
