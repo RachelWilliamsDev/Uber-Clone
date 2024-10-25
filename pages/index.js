@@ -1,7 +1,29 @@
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import tw from "tailwind-styled-components";
+import { auth } from "../firebase";
 import Map from "./components/Map";
+
 export default function Home() {
+  const [user, setUser] = useState(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    return onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser({
+          name: user.displayName,
+          photoUrl: user.photoURL,
+        });
+      } else {
+        setUser(null);
+        router.push("/login");
+      }
+    });
+  }, []);
+
   return (
     <Wrapper>
       <Map />
@@ -9,12 +31,16 @@ export default function Home() {
         <Header>
           <UberLogo src="images/uber-logo.png" />
           <Profile>
-            <Name>Rachel Williams</Name>
-            <UserImage src="images/me.jpg" />
+            <Name>{user && user.name}</Name>
+            <UserImage
+              src={user?.photoUrl || "images/user-avatar.png"}
+              alt="User profile image"
+              onClick={() => signOut(auth)}
+            />
           </Profile>
         </Header>
         <ActionButtons>
-          <Link href="/search">
+          <Link className="flex-1" href="/search">
             <ActionButton>
               <ActionButtonImage src="images/uberx.png" />
               Ride
@@ -56,11 +82,11 @@ const Profile = tw.div`
 `;
 
 const Name = tw.div`
-  mr-4 w-20 text-sm
+  mr-4 max-w-28 text-sm flex
 `;
 
 const UserImage = tw.img`
-  h-12 w-12 rounded-full border border-gray-200
+  h-12 w-12 rounded-full border border-gray-200 cursor-pointer
 `;
 
 const ActionButtons = tw.div`
