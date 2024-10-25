@@ -1,8 +1,11 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Link from "next/link";
+import { useState } from "react";
 import tw from "tailwind-styled-components";
 
 const Search = () => {
+  const [pickup, setPickup] = useState();
+  const [dropoff, setDropoff] = useState();
   return (
     <Wrapper>
       <ButtonContainer>
@@ -19,8 +22,16 @@ const Search = () => {
           <Square src="/images/square-full.png" />
         </FromToIcons>
         <InputBoxes>
-          <Input placeholder="Enter pickup location" />
-          <Input placeholder="Where to?" />
+          <Input
+            placeholder="Enter pickup location"
+            value={pickup}
+            onChange={(e) => setPickup(e.target.value)}
+          />
+          <Input
+            placeholder="Where to?"
+            value={dropoff}
+            onChange={(e) => setDropoff(e.target.value)}
+          />
         </InputBoxes>
         <PlusIcon src="/images/plus-math.png" />
       </InputContainer>
@@ -28,7 +39,17 @@ const Search = () => {
         <StarIcon src="/images/star.png" />
         Saved Places
       </SavedPlaces>
-      <ConfirmButtonContainer>Confirm Locations</ConfirmButtonContainer>
+      <Link
+        href={{
+          pathname: "/confirm",
+          query: {
+            pickup: pickup,
+            dropoff: dropoff,
+          },
+        }}
+      >
+        <ConfirmButtonContainer>Confirm Locations</ConfirmButtonContainer>
+      </Link>
     </Wrapper>
   );
 };
