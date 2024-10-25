@@ -7,7 +7,7 @@ export default function Home() {
       <Map />
       <ActionItems>
         <Header>
-          <UberLogo src="images/UberLogo.jpg" />
+          <UberLogo src="images/uber-logo.png" />
           <Profile>
             <Name>Rachel Williams</Name>
             <UserImage src="images/me.jpg" />
@@ -36,7 +36,7 @@ export default function Home() {
 }
 
 const Wrapper = tw.div`
-  flex flex-col h-screen bg-white
+  flex flex-col h-screen bg-white text-black
 `;
 
 const ActionItems = tw.div`
@@ -56,7 +56,7 @@ const Profile = tw.div`
 `;
 
 const Name = tw.div`
-  mr-4 w-20 text-sm text-black
+  mr-4 w-20 text-sm
 `;
 
 const UserImage = tw.img`
@@ -68,7 +68,7 @@ const ActionButtons = tw.div`
 `;
 
 const ActionButton = tw.div`
-  flex bg-gray-200 text-black flex-1 m-1 h-32 items-center flex-col justify-center rounded-lg transform hover:scale-105 transition text-xl
+  flex bg-gray-200 flex-1 m-1 h-32 items-center flex-col justify-center rounded-lg transform hover:scale-105 transition text-xl
 `;
 
 const ActionButtonImage = tw.img`
@@ -76,5 +76,5 @@ const ActionButtonImage = tw.img`
 `;
 
 const InputButton = tw.div`
-  h-20 bg-gray-200 text-2xl text-black p-4 flex items-center mt-8
+  h-20 bg-gray-200 text-2xl p-4 flex items-center mt-8
 `;
